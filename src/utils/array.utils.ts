@@ -38,3 +38,36 @@ export function createRange(from: number, to: number): number[] {
   }
   return range;
 }
+
+export function findLastIndex<T>(array: Array<T>, predicate: (value: T, index: number, obj: T[]) => boolean): number {
+  let l = array.length;
+  while (l--) {
+    if (predicate(array[l], l, array)) return l;
+  }
+  return -1;
+}
+
+export function findLastItem<T>(array: Array<T>, predicate: (value: T, index: number, obj: T[]) => boolean): T {
+  let l = array.length;
+  while (l--) {
+    if (predicate(array[l], l, array)) return array[l];
+  }
+  return null;
+}
+
+export function findIthItemIndex<T>(
+  array: T[],
+  num: number,
+  predicate: (value: T, index: number, obj: T[]) => boolean
+): number {
+  let currentNum = 0;
+  for (let i = 0; i < (array || []).length; i++) {
+    if (predicate(array[i], i, array)) {
+      currentNum++;
+      if (currentNum === num) {
+        return i;
+      }
+    }
+  }
+  return -1;
+}
