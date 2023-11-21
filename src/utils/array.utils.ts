@@ -71,3 +71,33 @@ export function findIthItemIndex<T>(
   }
   return -1;
 }
+
+export function flattenValues<T>(array: any[]): T[] {
+  return (array || []).reduce((flatArray, val) => {
+    if (isArray(val)) {
+      flatArray.push(...val);
+    } else {
+      flatArray.push(val);
+    }
+    return flatArray;
+  }, []);
+}
+
+export function uniqueArrays<T>(arrays: T[][]): T[][] {
+  const uniqueArrays: T[][] = [];
+  for (const array of arrays) {
+    if (
+      !uniqueArrays.some(ua => ua.length === array.length && ua.every((element, index) => element === array[index]))
+    ) {
+      uniqueArrays.push(array);
+    }
+  }
+  return uniqueArrays;
+}
+
+export function flattenMatrix<T>(array: T[][]): T[] {
+  return (array || []).reduce((arr, item) => {
+    arr.push(...item);
+    return arr;
+  }, []);
+}

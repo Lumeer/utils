@@ -23,3 +23,4 @@ export * from './date.utils';
 export * from './data.utils';
 export * from './number.utils';
 export * from './string.utils';
+export * from './element.utils';
